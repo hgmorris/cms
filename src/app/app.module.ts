@@ -7,6 +7,12 @@ import { HeaderComponent } from './header.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
+import { DocumentListComponent } from './documents/document-list/document-list.component';
+import { DocumentItemComponent } from './documents/document-item/document-item.component';
+import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { ContactItemComponent } from './contact-item/contact-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +20,18 @@ import { ContactListComponent } from './contacts/contact-list/contact-list.compo
     HeaderComponent,
     ContactsComponent,
     ContactDetailComponent,
-    ContactListComponent
+    ContactListComponent,
+    DocumentItemComponent,
+    DocumentDetailComponent,
+    DocumentsComponent,
+    ContactItemComponent,
+    DocumentListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
