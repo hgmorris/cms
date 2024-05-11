@@ -13,7 +13,7 @@ export class ContactDetailComponent {
      "jacksonk@byui.edu",
       "208-496-3771",
       "../../assets/images/jacksonk.jpg",
-      [] 
+      []
   );
 
 }
