@@ -11,8 +11,13 @@ import { DocumentListComponent } from './documents/document-list/document-list.c
 import { DocumentItemComponent } from './documents/document-item/document-item.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { DocumentsComponent } from './documents/documents.component';
-import { ContactItemComponent } from './contact-item/contact-item.component';
+import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
 import { FormsModule } from '@angular/forms';
+import { MessageItemComponent } from './messages/message-item/message-item.component';
+import { MessageListComponent } from './messages/message-list/message-list.component';
+import { MessageEditComponent } from './messages/message-edit/message-edit.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +31,9 @@ import { FormsModule } from '@angular/forms';
     DocumentsComponent,
     ContactItemComponent,
     DocumentListComponent,
+    MessageItemComponent,
+    MessageListComponent,
+    MessageEditComponent,
   ],
   imports: [
     BrowserModule,
