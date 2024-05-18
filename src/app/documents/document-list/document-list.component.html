@@ -1,3 +1,5 @@
+
+
 <div class="panel panel-default">
   <div class="panel-heading">
   <div class="row pad-left-right">
@@ -7,8 +9,13 @@
     </div>
   <div class="panel-body">
   <div class="center-panel">
-  <!--Add tag to display a list of DocumentItem components-->
+    <div *ngFor="let doc of documents">
+      <cms-document-item
+        [document]="doc"
+        (click)="onSelectedDocument(doc)">
+      </cms-document-item>
+    </div>
   </div>
   </div>
+</div>
 
-  </div>
