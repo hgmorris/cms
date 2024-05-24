@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
-import { ContactsComponent } from './contacts/contacts.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { DocumentListComponent } from './documents/document-list/document-list.component';
@@ -18,16 +17,13 @@ import { MessageListComponent } from './messages/message-list/message-list.compo
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { DropdownDirective } from './dropdown.directive';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContactsComponent,
     ContactDetailComponent,
     ContactListComponent,
+    DocumentListComponent,
     DocumentItemComponent,
     DocumentDetailComponent,
     DocumentsComponent,
@@ -44,7 +40,6 @@ import { DropdownDirective } from './dropdown.directive';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
