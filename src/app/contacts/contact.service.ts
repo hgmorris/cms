@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +13,10 @@ export class ContactService {
   constructor() { }
 
   getContacts(): Contact[] {
-    return [...this.contacts];
+    return this.contacts.slice();
   }
 
   getContact(id: string): Contact | null {
-    const foundContact = this.contacts.find(contact => contact.id === id);
-    return foundContact || null;
+    return this.contacts.find(contact => contact.id === id) || null;
   }
 }

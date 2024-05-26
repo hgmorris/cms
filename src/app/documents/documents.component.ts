@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Document } from './document.model';
-
+import { DocumentService } from './document.service'; // Import DocumentService
 
 @Component({
   selector: 'cms-documents',
   templateUrl: './documents.component.html',
-  styleUrl: './documents.component.css'
+  styleUrls: ['./documents.component.css']
 })
-export class DocumentsComponent {
-  selectedDocument: Document;
+export class DocumentsComponent implements OnInit {
+  selectedDocument!: Document;
 
-  constructor() {
-    this.selectedDocument = new Document('cse340', '', '', '');
+  constructor(private documentService: DocumentService) {} // Inject DocumentService
+
+  ngOnInit(): void {
+    this.documentService.documentSelectedEvent.subscribe(
+      (document: Document) => {
+        this.selectedDocument = document; // Assign the document to selectedDocument
+      }
+    );
   }
-
-  ngOnInit(): void {}
-
 }

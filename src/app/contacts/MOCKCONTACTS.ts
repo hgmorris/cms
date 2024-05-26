@@ -128,7 +128,7 @@ export const MOCKCONTACTS: Contact[] = [
       name: 'Bradley Armstrong',
       email: 'armstrongb@byui.edu',
       phone: '208-496-3766',
-      imageUrl: '../../../assets/images/armstrongb.jpg',
+      imageUrl: '../../assets/images/armstrongb.jpg',
       group: []
     },
     {
