@@ -1,24 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Document } from '../document.model';
-
+import { DocumentService } from '../document.service';
+import { WinRefService } from '../../win-ref.service';
 
 @Component({
   selector: 'cms-document-detail',
   templateUrl: './document-detail.component.html',
-  styleUrl: './document-detail.component.css'
+  styleUrls: ['./document-detail.component.css']
 })
-export class DocumentDetailComponent {
-document: Document;
+export class DocumentDetailComponent implements OnInit {
+  document: Document | null = null;
+  nativeWindow: any;
 
-    constructor() {
-      this.document = {
-        id: '1',
-        name: 'CIT 366 - Full Stack Web Development',
-        description: 'Learn how to develop web applications using the MEAN stack.',
-        url: 'http://content.byui.edu/file/6f4d4f4d-2b1b-4b0f-8f1e-3c3a3b3b3b3b/1/CIT366/course.html',
-      };
+  constructor(
+    private documentService: DocumentService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private winRefService: WinRefService
+  ) { }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => this.handleRouteParams(params));
+  }
+
+  handleRouteParams(params: any): void {
+    const id = params['id'];
+    this.fetchDocument(id);
+    this.nativeWindow = this.winRefService.getNativeWindow();
+  }
+
+  fetchDocument(id: string): void {
+    this.document = this.documentService.getDocument(id);
+  }
+
+  onView(): void {
+    if (this.document?.url) {
+      this.nativeWindow.open(this.document.url);
     }
+  }
 
-    ngOnInit(): void {}
-
+  onDelete(): void {
+    if (this.document) {
+      this.documentService.deleteDocument(this.document);
+      this.router.navigate(['/documents']);
+    }
+  }
 }

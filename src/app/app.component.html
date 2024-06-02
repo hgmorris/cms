@@ -1,7 +1,10 @@
 
-<cms-header (selectedFeatureEvent)="switchView($event)"></cms-header>
-<div class="container pull-left" [ngSwitch]="selectedFeature">
-<cms-message-list *ngSwitchCase="'messages'"></cms-message-list>
-  <cms-contacts *ngSwitchCase="'contacts'"></cms-contacts>
-  <cms-documents *ngSwitchDefault></cms-documents>
+<cms-header></cms-header>
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+        <router-outlet
+        [routerLink]="['/contacts']"></router-outlet>
+      </div>
+   </div>
 </div>

@@ -1,24 +1,14 @@
-
-<div class="panel panel-default">
-
-  <div class="panel-heading">
-   <div class="row">
-      <div class="col-xs-6">
-        <h1 class="panel-title">Contacts</h1>
-      </div>
-      <div class="col-xs-6 text-right">
-        <button class="btn btn-success">New Contact</button>
-  </div>
-</div>
-</div>
-  <div class="panel-body">
-    <div *ngFor="let contact of contacts"class="row contact-item">
-
-      <div class="col-xs-6">
-        <h3> {{ contact.name}}</h3>
-      </div>
-      <div class="col-xs-6 text-right">
-        <img src="{{contact.imageUrl}}" alt="{{contact.name}}" class="contact-image">
+<div class="col-xs-12">
+  <h3>Contacts</h3>
+  <button class="btn btn-success pull-right">New Contact</button>
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
+        <cms-contact-item
+          *ngFor="let contactEl of contacts"
+          [contact]="contactEl"
+          [routerLink]="['/contacts', contactEl.id]"
+        ></cms-contact-item>
       </div>
     </div>
   </div>

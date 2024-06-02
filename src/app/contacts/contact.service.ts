@@ -2,7 +2,6 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +17,9 @@ export class ContactService {
 
   getContact(id: string): Contact | null {
     return this.contacts.find(contact => contact.id === id) || null;
+  }
+
+  deleteContact(contact: Contact): void {
+    this.contacts = this.contacts.filter(c => c.id !== contact.id);
   }
 }

@@ -3,6 +3,7 @@ import { Message } from '../message.model';
 import { ContactService } from '../../contacts/contact.service';
 import { Contact } from '../../contacts/contact.model';
 
+
 @Component({
   selector: 'cms-message-item',
   templateUrl: './message-item.component.html',
