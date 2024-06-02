@@ -7,7 +7,8 @@ import { ContactDetailComponent } from './contacts/contact-detail/contact-detail
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
-import { MessageService } from './messages/message.service'; // replace with actual path
+import { MessageListComponent } from './messages/message-list/message-list.component'; // Import the MessageListComponent
+import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'Message',
-    component: MessageService,
+    path: 'messages', // Use 'messages' instead of 'Message'
+    component: MessageListComponent,
+    children: [
+    { path: 'new', component: MessageEditComponent },
+    { path: ':id', component: MessageEditComponent },
+    { path: ':id/edit', component: MessageListComponent }
+
+    ]
   },
 ];
 

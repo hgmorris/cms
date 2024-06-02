@@ -9,6 +9,9 @@ import { MessageService } from '../message.service'; // Import MessageService
   styleUrls: ['./message-edit.component.css']
 })
 export class MessageEditComponent {
+onClear() {
+throw new Error('Method not implemented.');
+}
 
   constructor(private messageService: MessageService) {} // Inject MessageService
 
