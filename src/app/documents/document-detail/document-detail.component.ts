@@ -10,7 +10,7 @@ import { WinRefService } from '../../win-ref.service';
   styleUrls: ['./document-detail.component.css']
 })
 export class DocumentDetailComponent implements OnInit {
-  document: Document | null = null;
+  document: Document | undefined;
   nativeWindow: any;
 
   constructor(
@@ -31,7 +31,7 @@ export class DocumentDetailComponent implements OnInit {
   }
 
   fetchDocument(id: string): void {
-    this.document = this.documentService.getDocument(id);
+    this.document = this.documentService.getDocument(id) || undefined;
   }
 
   onView(): void {
