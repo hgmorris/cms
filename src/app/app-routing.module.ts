@@ -11,6 +11,7 @@ import { MessageListComponent } from './messages/message-list/message-list.compo
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/documents', pathMatch: 'full' },
   {
     path: 'contacts',
     component: ContactsComponent,

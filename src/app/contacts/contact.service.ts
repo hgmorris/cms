@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,7 @@ export class ContactService {
   contacts: Contact[] = [];
   contactListChangedEvent = new Subject<Contact[]>();
   maxContactId: number;
-  getContacts: any;
-  contactSelectedEvent: any;
-  getContact: any;
+  contactSelectedEvent = new EventEmitter<Contact>();
 
   constructor() {
     this.contacts = MOCKCONTACTS;
@@ -21,13 +20,21 @@ export class ContactService {
 
   getMaxId(): number {
     let maxId = 0;
-    for (let contact of this.contacts) {
-      let currentId = parseInt(contact.id, 10);
-      if (currentId > maxId) {
-        maxId = currentId;
+
+    this.contacts.forEach(contact => {
+      if (+contact.id > maxId) {
+        maxId = +contact.id;
       }
-    }
+    }); 
     return maxId;
+  }
+
+  getContacts() {
+    return this.contacts.slice();
+  }
+
+  getContact(id: string) {
+    return this.contacts.find(contact => contact.id === id);
   }
 
   addContact(newContact: Contact) {
