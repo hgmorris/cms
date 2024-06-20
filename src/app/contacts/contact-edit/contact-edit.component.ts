@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Contact } from '../contact.model';
 import { ContactService } from '../contact.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'cms-contact-edit',
   templateUrl: './contact-edit.component.html',
   styleUrls: ['./contact-edit.component.css']
 })
-export class ContactEditComponent implements OnInit {
+export class ContactEditComponent implements OnInit, OnDestroy {
   originalContact?: Contact;
   contact: Contact = { id: '', name: '', email: '', phone: '', imageUrl: '', group: [] };
   groupContacts: Contact[] = [];
   editMode: boolean = false;
   id: string = '';
+  private subscription?: Subscription;
 
   constructor(
     private contactService: ContactService,
@@ -23,21 +25,25 @@ export class ContactEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
+    this.subscription = this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.initializeContact();
     });
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   initializeContact() {
     if (!this.id) {
       this.editMode = false;
-      this.navigateToContacts();
       return;
     }
     this.originalContact = this.contactService.getContact(this.id);
     if (!this.originalContact) {
-      this.navigateToContacts();
       return;
     }
     this.editMode = true;
@@ -48,22 +54,19 @@ export class ContactEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (!this.contact || !this.originalContact) {
+    if (form.invalid) {
       return;
     }
-    if (!form.value) {
-      return;
-    }
-    const updatedContact = this.createUpdatedContact(form);
-    if (this.editMode) {
-      this.contactService.updateContact(this.originalContact, updatedContact);
+    const newContact = this.createUpdatedContact(form);
+    if (this.editMode && this.originalContact) {
+      this.contactService.updateContact(this.originalContact, newContact);
     } else {
-      this.contactService.addContact(updatedContact);
+      this.contactService.addContact(newContact);
     }
     this.navigateToContacts();
   }
 
-  createUpdatedContact(form: NgForm) {
+  createUpdatedContact(form: NgForm): Contact {
     return {
       id: this.contact.id,
       name: form.value.name,

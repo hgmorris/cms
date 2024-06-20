@@ -2,9 +2,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
-
+import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 // Application imports
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +30,22 @@ import { MessageItemComponent } from './messages/message-item/message-item.compo
 import { MessageListComponent } from './messages/message-list/message-list.component';
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 
+// Define your routes
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/contacts', pathMatch: 'full' },
+  { path: 'contacts', component: ContactsComponent, children: [
+    { path: 'new', component: ContactEditComponent },
+    { path: ':id', component: ContactDetailComponent },
+    { path: ':id/edit', component: ContactEditComponent }
+  ] },
+  { path: 'documents', component: DocumentsComponent, children: [
+    { path: 'new', component: DocumentEditComponent },
+    { path: ':id', component: DocumentDetailComponent },
+    { path: ':id/edit', component: DocumentEditComponent }
+  ] },
+  { path: 'messages', component: MessageListComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,15 +70,13 @@ import { MessageEditComponent } from './messages/message-edit/message-edit.compo
     MessageItemComponent,
     MessageListComponent,
     MessageEditComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule,
-
-
+    // RouterModule.forRoot(appRoutes),
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
