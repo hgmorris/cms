@@ -1,4 +1,4 @@
-import { ContactsFilterPipe } from '../contacts-filter.pipe';
+import { ContactsFilterPipe } from './contacts-filter.pipe';
 
 describe('ContactsFilterPipe', () => {
   it('create an instance', () => {
