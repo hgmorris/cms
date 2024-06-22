@@ -11,7 +11,7 @@ export class MessageService {
   messageChangedEvent = new EventEmitter<Message[]>();
   maxMessageId: number = this.getMaxId();
 
-  private messagesUrl = 'https://angular-first-project-7e537-default-rtdb.firebaseio.com/messages.json'; // Replace with your Firebase URL
+  private messagesUrl = 'https://angular-first-project-7e537-default-rtdb.firebaseio.com/messages.json'; 
 
   constructor(private http: HttpClient) {
     this.fetchMessages();

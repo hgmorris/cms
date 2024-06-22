@@ -12,7 +12,7 @@ export class DocumentService {
   documentListChangedEvent = new Subject<Document[]>();
   maxDocumentId: number = this.getMaxId();
 
-  private documentsUrl = 'https://angular-first-project-7e537-default-rtdb.firebaseio.com/documents.json'; // Ensure this URL is correct
+  private documentsUrl = 'https://angular-first-project-7e537-default-rtdb.firebaseio.com/documents.json'; 
 
   constructor(private http: HttpClient) {
     this.fetchDocuments();
