@@ -9,11 +9,17 @@ import { ContactService } from '../contact.service';
 })
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
+  term: string = '';
+filteredContacts: any;
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
     this.contacts = this.contactService.getContacts();
+  }
+
+  search(value: string) {
+    this.term = value;
   }
 
   onSelected(contact: Contact) {

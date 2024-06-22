@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 // Application imports
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { MessageItemComponent } from './messages/message-item/message-item.component';
 import { MessageListComponent } from './messages/message-list/message-list.component';
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
 
 // Define your routes
 const appRoutes: Routes = [
@@ -70,13 +72,15 @@ const appRoutes: Routes = [
     MessageItemComponent,
     MessageListComponent,
     MessageEditComponent,
+    ContactsFilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    // RouterModule.forRoot(appRoutes),
-    CommonModule
+    RouterModule.forRoot(appRoutes),
+    CommonModule,
+    HttpClientModule // Add HttpClientModule here
   ],
   providers: [],
   bootstrap: [AppComponent]
